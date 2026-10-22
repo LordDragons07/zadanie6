@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Калькулятор стоимости услуги</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="calculator.js" defer></script>
+</head>
+<body>
+
+    <main id="content">
+
+        <h1>Калькулятор стоимости услуги</h1>
+
+        <form id="calc-form">
+
+            <p>
+                <label for="quantity">Количество:</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" step="1">
+            </p>
+
+            <fieldset>
+                <legend>Тип услуги:</legend>
+
+                <p>
+                    <label>
+                        <input type="radio" name="service-type" value="1" checked>
+                        Базовая уборка — 1000 руб.
+                    </label>
+                </p>
+
+                <p>
+                    <label>
+                        <input type="radio" name="service-type" value="2">
+                        Генеральная уборка — 2000 руб.
+                    </label>
+                </p>
+
+                <p>
+                    <label>
+                        <input type="radio" name="service-type" value="3">
+                        Уборка после ремонта — 3000 руб.
+                    </label>
+                </p>
+            </fieldset>
+
+            <p id="option-wrapper" hidden>
+                <label for="option">Дополнительная опция:</label>
+                <select id="option" name="option">
+                    <option value="windows" data-price="500">Мытьё окон — +500 руб.</option>
+                    <option value="carpets" data-price="800">Чистка ковров — +800 руб.</option>
+                    <option value="furniture" data-price="650">Химчистка мебели — +650 руб.</option>
+                </select>
+            </p>
+
+            <p id="property-wrapper" hidden>
+                <label>
+                    <input type="checkbox" id="property" name="property">
+                    Вывоз строительного мусора — +1500 руб.
+                </label>
+            </p>
+
+            <p id="result">Итоговая стоимость: 1000 руб.</p>
+
+        </form>
+
+    </main>
+
+</body>
+</html>
