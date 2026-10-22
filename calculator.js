@@ -7,13 +7,13 @@ window.addEventListener("DOMContentLoaded", function () {
     var optionWrapper = document.getElementById("option-wrapper");
     var optionSelect = document.getElementById("option");
     var propertyWrapper = document.getElementById("property-wrapper");
-    var propertyCheckbox = document.getElementById("property");
+    var propertyCheckboxes = document.querySelectorAll(".property-option");
     var result = document.getElementById("result");
 
     var serviceData = {
         "1": { name: "Базовая уборка", price: 1000, hasOptions: false, hasProperty: false },
         "2": { name: "Генеральная уборка", price: 2000, hasOptions: true, hasProperty: false },
-        "3": { name: "Уборка после ремонта", price: 3000, hasOptions: false, hasProperty: true, propertyPrice: 1500 }
+        "3": { name: "Уборка после ремонта", price: 3000, hasOptions: false, hasProperty: true }
     };
 
     function getSelectedType() {
@@ -50,11 +50,15 @@ window.addEventListener("DOMContentLoaded", function () {
 
         if (service.hasOptions) {
             selectedOption = optionSelect.options[optionSelect.selectedIndex];
-            total += parseInt(selectedOption.getAttribute("data-price"), 10);
+            total += parseInt(selectedOption.getAttribute("data-price"), 10) || 0;
         }
 
-        if (service.hasProperty && propertyCheckbox.checked) {
-            total += service.propertyPrice;
+        if (service.hasProperty) {
+            propertyCheckboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    total += parseInt(checkbox.getAttribute("data-price"), 10) || 0;
+                }
+            });
         }
 
         total *= quantity;
@@ -64,7 +68,10 @@ window.addEventListener("DOMContentLoaded", function () {
 
     quantityField.addEventListener("input", calculatePrice);
     optionSelect.addEventListener("change", calculatePrice);
-    propertyCheckbox.addEventListener("change", calculatePrice);
+
+    propertyCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener("change", calculatePrice);
+    });
 
     typeRadios.forEach(function (radio) {
         radio.addEventListener("change", calculatePrice);
