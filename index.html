@@ -54,14 +54,17 @@
                     <option value="furniture" data-price="650">Химчистка мебели — +650 руб.</option>
                 </select>
             </p>
-
-            <p id="property-wrapper" hidden>
-                <label>
-                    <input type="checkbox" id="property" name="property">
-                    Вывоз строительного мусора — +1500 руб.
-                </label>
-            </p>
-
+<p id="property-wrapper" hidden>
+    <label>
+        <input type="checkbox" class="property-option" name="property" data-price="1500">
+        Вывоз строительного мусора — +1500 руб.
+    </label>
+    <label>
+        <input type="checkbox" class="property-option" name="property" data-price="700">
+        Химчистка после ремонта — +700 руб.
+    </label>
+</p>
+         
             <p id="result">Итоговая стоимость: 1000 руб.</p>
 
         </form>
